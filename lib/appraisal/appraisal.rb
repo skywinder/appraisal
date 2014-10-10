@@ -66,7 +66,11 @@ module Appraisal
         gemfile_root.mkdir
       end
 
-      gemfile_root.join("#{clean_name}.gemfile").to_s
+      gemfile_root.join(gemfile_name).to_s
+    end
+
+    def relative_gemfile_path
+      ::File.join("gemfiles", gemfile_name)
     end
 
     def relativize
@@ -98,6 +102,10 @@ module Appraisal
 
     def gemfile_root
       Pathname.new(::File.join(Dir.pwd, "gemfiles"))
+    end
+
+    def gemfile_name
+      "#{clean_name}.gemfile"
     end
 
     def lockfile_path
